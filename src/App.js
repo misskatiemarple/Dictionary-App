@@ -1,12 +1,22 @@
-import logo from "./logo.svg";
 import "./App.css";
+import Dictionary from "./Dictionary";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <a href="3" className="bt btn-primary"></a>
-      </header>
+      <div className="App-container">
+        <header className="App-header">
+          <a href="#" className="bt btn-primary">
+            I'm a button
+          </a>
+        </header>
+        <main>
+          <Dictionary />
+        </main>
+        <footer className="text-center">
+          <small>Coded By Katie Marple and open-sourced on Github</small>
+        </footer>
+      </div>
     </div>
   );
 }
