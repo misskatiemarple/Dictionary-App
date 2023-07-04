@@ -5,11 +5,7 @@ function App() {
   return (
     <div className="App">
       <div className="App-container">
-        <header className="App-header">
-          <a href="#" className="bt btn-primary">
-            I'm a button
-          </a>
-        </header>
+        <header className="App-header"></header>
         <main>
           <Dictionary />
         </main>
