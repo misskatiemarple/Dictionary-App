@@ -1,8 +1,22 @@
+body {
+  background: #faf8f5;
+}
 .App-header {
   margin: 30px 0;
 }
 .App-container {
   max-width: 600px;
+}
+
+.businessName {
+  text-align: center;
+}
+
+.secondaryTitle {
+  font-style: italic;
+  font-size: 18px;
+  text-align: center;
+  color: #333;
 }
 
 .footer {
