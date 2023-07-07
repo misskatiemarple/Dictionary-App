@@ -9,8 +9,14 @@ export default function Dictionary(props) {
   let [results, setResults] = useState(null);
   let [loaded, setLoaded] = useState(false);
   let [photos, setPhotos] = useState(null);
+  let [error, setError] = useState(false);
 
   function handleDictionaryResponse(response) {
+    if (response.data.status === "not_found") {
+      setError(true);
+      return;
+    }
+    setError(false);
     setResults(response.data);
   }
 
@@ -21,11 +27,15 @@ export default function Dictionary(props) {
   function search() {
     let apiKey = "3041fdbb74ta3a686b2ca3f782407o93";
     let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${word}&key=${apiKey}`;
-    axios.get(apiUrl).then(handleDictionaryResponse);
+    axios.get(apiUrl).then(handleDictionaryResponse).catch(handleError);
 
     const imageApiKey = "3041fdbb74ta3a686b2ca3f782407o93";
     let imageApiUrl = `https://api.shecodes.io/images/v1/search?query=${word}&key=${imageApiKey}`;
     axios.get(imageApiUrl).then(handleImageResponse);
+  }
+
+  function handleError(error) {
+    setError(true);
   }
 
   function handleSubmit(event) {
@@ -41,7 +51,7 @@ export default function Dictionary(props) {
     setWord(event.target.value);
   }
 
-  if (loaded) {
+  if (loaded && !error) {
     return (
       <div className="Dictionary">
         <section>
@@ -55,8 +65,26 @@ export default function Dictionary(props) {
           </form>
           <div className="hint">suggested words: happy, sun, yoga...</div>
         </section>
+        {error}
         <Results results={results} />
         <Photos photos={photos} />
+      </div>
+    );
+  } else if (loaded && error) {
+    return (
+      <div className="Dictionary">
+        <section>
+          <h2>What word do you want to look up?</h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="search"
+              onChange={handleWordChange}
+              defaultValue={props.defaultKeyword}
+            />
+          </form>
+          <div className="hint">suggested words: happy, sun, yoga...</div>
+        </section>
+        <h1>Word not found</h1>
       </div>
     );
   } else {
