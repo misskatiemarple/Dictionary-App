@@ -65,7 +65,6 @@ export default function Dictionary(props) {
           </form>
           <div className="hint">suggested words: happy, sun, yoga...</div>
         </section>
-        {error}
         <Results results={results} />
         <Photos photos={photos} />
       </div>
@@ -84,7 +83,7 @@ export default function Dictionary(props) {
           </form>
           <div className="hint">suggested words: happy, sun, yoga...</div>
         </section>
-        <h1>Word not found</h1>
+        <h1 className="error">Oops. Sorry, word not found</h1>
       </div>
     );
   } else {
