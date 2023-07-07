@@ -16,7 +16,16 @@ function App() {
           <Dictionary defaultKeyword="welcome" />
         </main>
         <footer className="text-center">
-          <small>Coded By Katie Marple and open-sourced on Github</small>
+          <small>
+            Coded By Katie Marple and{" "}
+            <a
+              href="https://github.com/misskatiemarple/dictionary"
+              target="_blank"
+              rel="noreferrer"
+            >
+              open-sourced on Github
+            </a>
+          </small>
         </footer>
       </div>
     </div>
